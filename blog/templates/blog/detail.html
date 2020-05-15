@@ -1,5 +1,4 @@
-<!doctype html>
-<html lang = "en">
+<html>
 {% load static %}
   <head>
     <meta charset="utf-8">
@@ -7,17 +6,16 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.0.1">
-    <title>Abhinav Ram</title>
+    <title>{{ blog.title }}</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
 
     <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="{% url 'home' %}">Abhinav Ram</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,43 +24,23 @@
       <div class="navbar-nav ml-auto">
        <a class="nav-item nav-link" href="https://www.facebook.com/abhinav.ram.167">Facebook</a>
        <a class="nav-item nav-link" href="{% static 'document.pdf' %}">Docs</a>
-       <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+       <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
       </div>
     </div>
  </nav>
 </header>
 
 <main role="main">
-
- <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
- <div class = "row">  
- <div class="col-md-6 px-0">
-      <h1 class="display-4 font-italic" style = "text-align:center">I'm Abhinav, and this is my place</h1>
-      <p class="lead my-3" style = "text-align:center">Stay home. Stay safe. Maintain social distancing. Wash your hands. Cover your face.</p>    
-</div>
-    <div class="col-auto d-none d-lg-block">
-       <img src = "{% static 'abhibaby.jpg' %}" height = "250" width = "325">
-    </div>
+ <div class="blog-post">
+        <br>
+        <h2 class="blog-post-title mb-4" style = "text-align:center">
+            {{ blog.title }}
+        </h2> 
+        <h2 class="blog-post-title mb-4" style = "text-align:center">
+           <img src = "{{ blog.image.url }}" height = "250" width = "200">
+        </h2>
+          <p style = "text-align:centre"> {{ blog.body }}</p> 
  </div>
-</div>
-
-   <div class = "album py-5 bg-light">
-      <div class = "container">
-       <div class = "row">
-         {% for job in jobs.all%}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-             <img class = card-img-top" src = "{{ job.image.url }}" width="400" height="535">
-          <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-
 </main>
 
 <footer class="text-muted">

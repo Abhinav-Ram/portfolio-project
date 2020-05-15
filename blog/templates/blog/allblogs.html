@@ -1,5 +1,4 @@
-<!doctype html>
-<html lang = "en">
+<html>
 {% load static %}
   <head>
     <meta charset="utf-8">
@@ -13,11 +12,10 @@
 
     <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="{% url 'home' %}">Abhinav Ram</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,43 +24,34 @@
       <div class="navbar-nav ml-auto">
        <a class="nav-item nav-link" href="https://www.facebook.com/abhinav.ram.167">Facebook</a>
        <a class="nav-item nav-link" href="{% static 'document.pdf' %}">Docs</a>
-       <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+       <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
       </div>
     </div>
  </nav>
 </header>
 
 <main role="main">
-
- <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
- <div class = "row">  
- <div class="col-md-6 px-0">
-      <h1 class="display-4 font-italic" style = "text-align:center">I'm Abhinav, and this is my place</h1>
-      <p class="lead my-3" style = "text-align:center">Stay home. Stay safe. Maintain social distancing. Wash your hands. Cover your face.</p>    
-</div>
-    <div class="col-auto d-none d-lg-block">
-       <img src = "{% static 'abhibaby.jpg' %}" height = "250" width = "325">
-    </div>
- </div>
-</div>
-
-   <div class = "album py-5 bg-light">
-      <div class = "container">
-       <div class = "row">
-         {% for job in jobs.all%}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-             <img class = card-img-top" src = "{{ job.image.url }}" width="400" height="535">
-          <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-            </div>
+<section class="jumbotron text-center">
+    <div class="container">
+      <h1>I'm Abhinav, and this is my blog</h1>
+      <hr style = "border-top: 1px dashed black">
+      <p style="color:black;font-size:23px;font-family:verdana;">Check out my latest posts!</p>
+   </div>
+  </section>
+ {% for newblog in blogs.all%}
+      <div class="col-md-6">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+         <div class="col p-4 d-flex flex-column position-static">
+          <h3 class="mb-1"><a href = "{% url 'detail' newblog.id %}">{{ newblog.title }}</a></h3>
+          <div class="mb-4 text-muted">{{ newblog.format_date }}</div>
+            <p class="card-text mb-auto">{{ newblog.summary }}</p>
           </div>
-        </div>
-        {% endfor %}
+          <div class="col-auto d-none d-lg-block">
+             <img src = "{{ newblog.image.url }}" height = "250" width = "200">  
+          </div>
       </div>
     </div>
-  </div>
-
+        {% endfor %}
 </main>
 
 <footer class="text-muted">
